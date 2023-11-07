@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+	<title>Cafe Hunting</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel='stylesheet' id='font-css'  href='http://fonts.googleapis.com/css?family=Roboto:400,300,100' type='text/css' media='all' />
+	<link rel='stylesheet' href='./css/style.css' type='text/css'/>
+</head>
+<body>
+	
+	<div id='wrapper'>
+		<!-- left -->
+        <div id='user-panel'>
+            <img id="Icon" src="./img/logo.png" alt="Cafe Hunting logo" width="400px" />
+       
+			<div id="mode">
+            <button id="locateButton">📍 Find cafe nearby</button>  <!-- link to locateUser.js -->
+            <button id="workButton">💼 Working mode</button>  <!-- link to work.js -->
+            
+			</div>
+            <!-- Filter -->
+			<div id="filterSection">
+				<div class="filter-option">
+					<span class="filter-icon">🕒</span>
+					<label for="openingToggle">Opening</label>
+					<input type="checkbox" id="openingToggle" class="toggle-checkbox">
+					<label class="toggle-label" for="openingToggle"></label>
+				</div>
+				
+				<div class="filter-option">
+					<span class="filter-icon">📶</span>
+					<label for="wifiToggle">Wi-Fi</label>
+					<input type="checkbox" id="wifiToggle" class="toggle-checkbox">
+					<label class="toggle-label" for="wifiToggle"></label>
+				</div>
+				
+				<div class="filter-option">
+					<span class="filter-icon">🪑</span>
+					<label for="seatsToggle">Seats</label>
+					<input type="checkbox" id="seatsToggle" class="toggle-checkbox">
+					<label class="toggle-label" for="seatsToggle"></label>
+				</div>
+
+                <div class="filter-option">
+					<span class="filter-icon">🔌</span>
+					<label for="socketToggle">Socket</label>
+					<input type="checkbox" id="socketToggle" class="toggle-checkbox">
+					<label class="toggle-label" for="socketToggle"></label>
+				</div>
+			</div>
+			
+		
+			
+        </div>
+		<!-- Right -->
+        <div id='map-canvas'> 
+        <!-- Map here -->
+        </div>
+    </div>
+    <!-- The Javascript from external websites gets Loaded Here -->
+    <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type='text/javascript' src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src='https://maps.googleapis.com/maps/api/js?libraries=visualization&key=YOUR_API_HERE'></script> 
+    <!-- &callback=initialize -->
+    <script type='text/javascript' src='./js/map.js'></script>
+    <script type="text/javascript" src="./js/locateUser.js"></script>
+    <script type='text/javascript' src='./js/xdate.js'></script>
+    <script type='text/javascript' src='./js/mapStyle.js'></script>
+    
+</body>
+</html>
