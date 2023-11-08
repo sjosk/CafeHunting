@@ -15,8 +15,8 @@
 			
 			// Map Styling
 			var mapOptions = {
-				center: new google.maps.LatLng(51.514756, -0.104345), // London->need to change
-				zoom: 17,
+				center: new google.maps.LatLng(25.0330, 121.5654), 
+				zoom: 13,
 				maxZoom: 20,
 				styles: greenMap,
 				zoomControl     : true,
@@ -74,17 +74,20 @@
 			//console.log(dataArray.length);
 
 			//  BackE: Edit this variable so that it points to our API Look at Cafe Database for the values you need
-			var url = "http://dev.spatialdatacapture.org:8870/data/"+lat+"/"+lng+"/350";
+			var url = "http://casa0017.cetools.org:8816/Table/Cafe";
 
 			$.getJSON( url , function( data ) {
 				
                 //Create the markers with the loop
-				$.each(data, function( i, v ) {
+				$.each(data, function( k, v ) {
 					
-					var latLng = new google.maps.LatLng(v.lat, v.lon);
+					var latLng = new google.maps.LatLng(parseFloat(v.latitude), parseFloat(v.longitude));
+
+					dataArray.push(latLng);
+
 					var marker = new google.maps.Marker({
 		     			position: latLng, 
-		     			customInfo: v.pid,
+		     			
 						icon: icon,
 						map: map,
 		     		});
@@ -92,20 +95,20 @@
 
 
                             //Using Flickr API to get the photo as an example(waiting for our database)
-							google.maps.event.addListener(marker, 'click', function(content) {
-								return function(content){
-									infowindow.setContent("");
+							// google.maps.event.addListener(marker, 'click', function(content) {
+							// 	return function(content){
+							// 		infowindow.setContent("");
 									
-									map.setCenter(new google.maps.LatLng(v.points.y, v.points.x));
-									$.getJSON("http://dev.spatialdatacapture.org:8870/data/photoDescription/"+this.customInfo, function( data ) {
-										var dateTaken = new XDate((data[0].date_uploaded * 1000)).toString("MMM d, yyyy HH:mm:ss");
-										var content = "<b>Photo ID: </b>"+v.pid+"<br/> <br/><b>Description:</b><br/> "+data[0].description.replaceAll("+", " ")+" <br/> <br/><b>Date Taken: </b> "+dateTaken+" <br/><b>Camera: </b> "+data[0].device.replaceAll("+", " ")+"<br/><b>Location:</b> "+ v.points.y + ", " + v.points.x +" <br/><br/> <b>Photo</b> <br/><br/> <img src='"+data[0].download_url+"' width='300px' alt='Description'>";
-								    	infowindow.setContent(content);
-								    });
+							// 		map.setCenter(new google.maps.LatLng(v.points.y, v.points.x));
+							// 		$.getJSON("http://casa0017.cetools.org:8816/Table/Cafe"+this.customInfo, /function( data ) {
+							// 			var dateTaken = new XDate((data[0].date_uploaded * 1000)).toString("MMM d, yyyy HH:mm:ss");
+							// 			var content = "<b>Photo ID: </b>"+v.pid+"<br/> <br/><b>Description:</b><br/> "+data[0].description.replaceAll("+", " ")+" <br/> <br/><b>Date Taken: </b> "+dateTaken+" <br/><b>Camera: </b> "+data[0].device.replaceAll("+", " ")+"<br/><b>Location:</b> "+ v.points.y + ", " + v.points.x +" <br/><br/> <b>Photo</b> <br/><br/> <img src='"+data[0].download_url+"' width='300px' alt='Description'>";
+							// 	    	infowindow.setContent(content);
+							// 	    });
 					
-								    infowindow.open(map,this);
-								}
-							}(""));
+							// 	    infowindow.open(map,this);
+							// 	}
+							// }(""));
 
 						
  });
@@ -143,4 +146,3 @@
     	return decodeURIComponent( this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2) );
 	} 
  
-
