@@ -1,18 +1,60 @@
-body, html {
+html, body, #wrapper{
     height: 100%;
+    width: 100%;
     margin: 0;
-    display: flex;
 }
 
-#map-canvas {
+#header{
+    height: 100px;  
+    width: 100%;
+}
+
+#footer{
+    height: 100px;  
+    width: 100%;
+}
+
+.title{
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+    top: 8%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* background-color: rgba(215, 214, 214, 0.942); */
+    border-radius: 10px;
+    padding: 8px;
+    /* border: 1px solid rgb(30, 109, 109,0.6); */
+    font-size: 18px;
+    color:rgb(30, 109, 109);
+    -webkit-text-stroke: thickness color;
+    -webkit-text-stroke-color: white;
+    -webkit-text-stroke-width: 0.6px;
+    
+}
+
+
+
+@media (max-width: 768px) {
+    .title {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .title h2 {
+        font-size: 16px;
+    }
+}
+
+#map-canvas{
     height: 100%;
-    flex: 1; /* This will allow the map to expand to fill the space available, aside from the sidebar */
+    flex: 1;
 }
 
 #wrapper {
     display: flex;
     height: 100%;
 }
+
 
 #mode{
     margin-bottom: 50px;
@@ -21,7 +63,6 @@ body, html {
 #filterSection {
     margin-left: 50px;
 }
-
 
 .filter-option {
     display: flex;
@@ -34,7 +75,7 @@ body, html {
 }
 
 .toggle-checkbox {
-    display: none; /* To hide checkbox */
+    display: none; 
 }
 
 .toggle-label {
@@ -75,6 +116,7 @@ body, html {
 }
 
 button {
-    display: inline-flexbox;
-    margin-left:80px;
-}
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
