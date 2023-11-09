@@ -47,23 +47,31 @@
 
 
 		//Check the Wi-Fi, Seats, Socket, and Quiet boxes
-		let filtersChecked = false;
+		let workButtonChecked = false;
 		
 		$('#workButton').click(function() {
-			if (filtersChecked) {
+			if (workButtonChecked) {
 				// If it was checked previously, deselect the checkbox now
 				$('#wifiToggle').prop('checked', false);
 				$('#seatsToggle').prop('checked', false);
 				$('#socketToggle').prop('checked', false);
 				$('#quietToggle').prop('checked', false);
-				filtersChecked = false;
+				$('#cheapToggle').prop('checked', false);
+				$('#musicToggle').prop('checked', false);
+				$('#limitedTimeToggle').prop('checked', false);
+				$('#standingDeskToggle').prop('checked', false);
+				workButtonChecked = false;
 			} else {
 				// If it was not checked before, check the box now
 				$('#wifiToggle').prop('checked', true);
 				$('#seatsToggle').prop('checked', true);
 				$('#socketToggle').prop('checked', true);
 				$('#quietToggle').prop('checked', true);
-				filtersChecked = true;
+				$('#cheapToggle').prop('checked', false);
+				$('#musicToggle').prop('checked', false);
+				$('#limitedTimeToggle').prop('checked', false);
+				$('#standingDeskToggle').prop('checked', false);
+				workButtonChecked = true;
 			}
 	
 			filterMarkers();
