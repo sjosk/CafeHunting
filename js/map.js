@@ -122,9 +122,12 @@
 							<b>Quiet:</b> ${marker.customInfo.quiet}<br>
 							<b>Cheap:</b> ${marker.customInfo.cheap}<br>
 							<b>Music:</b> ${marker.customInfo.music}<br>
+							<b>Limited time:</b> ${marker.customInfo.limited_time}<br>
+							<b>Socket:</b> ${marker.customInfo.socket}<br>
+							<b>Standing desk:</b> ${marker.customInfo.standing_desk}<br>
 							<b>Open Time:</b> ${marker.customInfo.open_time}<br>
 							<b>URL:</b> <a href="${marker.customInfo.url}" target="_blank">${marker.customInfo.url}</a>
-						`;
+						`; 
 				
 						infowindow.setContent(content);
 						infowindow.open(map, marker);
