@@ -8,16 +8,16 @@ var portNumber = 8816;
 var connection = mysql.createConnection({
   host: 'casa0017.cetools.org',
   user: 'zczqy80',
-  password: 'qafizojeya',
+  password: 'XXX',
   database: 'zczqy80'
 });
 
 connection.connect(err => {
   if (err) {
-    console.error('数据库连接失败: ' + err.stack);
+    console.error('Unable to connect to the database: ' + err.stack);
     return;
   }
-  console.log('数据库连接成功。');
+  console.log('Database connection successful');
 });
 
 app.get('/Table/Cafe', function (req, res) {
