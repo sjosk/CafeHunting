@@ -87,35 +87,56 @@
 
 					var marker = new google.maps.Marker({
 		     			position: latLng, 
-		     			
-						icon: icon,
 						map: map,
+						icon: icon,	
+						customInfo: {
+							name: v.name,
+							city: v.city,
+							wifi: v.wifi,
+							seat: v.seat,
+							quiet: v.quiet,
+							cheap: v.cheap,
+							music: v.music,
+							url: v.url,
+							address: v.address,
+							limited_time: v.limited_time,
+							socket: v.socket,
+							standing_desk: v.standing_desk,
+							open_time: v.open_time
+						}
 		     		});
-					markerArray.push(marker);
 
-
-                            //Using Flickr API to get the photo as an example(waiting for our database)
-							// google.maps.event.addListener(marker, 'click', function(content) {
-							// 	return function(content){
-							// 		infowindow.setContent("");
-									
-							// 		map.setCenter(new google.maps.LatLng(v.points.y, v.points.x));
-							// 		$.getJSON("http://casa0017.cetools.org:8816/Table/Cafe"+this.customInfo, /function( data ) {
-							// 			var dateTaken = new XDate((data[0].date_uploaded * 1000)).toString("MMM d, yyyy HH:mm:ss");
-							// 			var content = "<b>Photo ID: </b>"+v.pid+"<br/> <br/><b>Description:</b><br/> "+data[0].description.replaceAll("+", " ")+" <br/> <br/><b>Date Taken: </b> "+dateTaken+" <br/><b>Camera: </b> "+data[0].device.replaceAll("+", " ")+"<br/><b>Location:</b> "+ v.points.y + ", " + v.points.x +" <br/><br/> <b>Photo</b> <br/><br/> <img src='"+data[0].download_url+"' width='300px' alt='Description'>";
-							// 	    	infowindow.setContent(content);
-							// 	    });
 					
-							// 	    infowindow.open(map,this);
-							// 	}
-							// }(""));
 
-						
- });
 
-      			setAllMap(map);
+					// //Using Flickr API to get the photo as an example(waiting for our database)
+					google.maps.event.addListener(marker, 'click', function () {
+						infowindow.setContent(""); 
+				
+						var content = `
+							<b>Name:</b> ${marker.customInfo.name}<br>
+							<b>City:</b> ${marker.customInfo.city}<br>
+							<b>Address:</b> ${marker.customInfo.address}<br>
+							<b>Wifi:</b> ${marker.customInfo.wifi}<br>
+							<b>Seat:</b> ${marker.customInfo.seat}<br>
+							<b>Quiet:</b> ${marker.customInfo.quiet}<br>
+							<b>Cheap:</b> ${marker.customInfo.cheap}<br>
+							<b>Music:</b> ${marker.customInfo.music}<br>
+							<b>Open Time:</b> ${marker.customInfo.open_time}<br>
+							<b>URL:</b> <a href="${marker.customInfo.url}" target="_blank">${marker.customInfo.url}</a>
+						`;
+				
+						infowindow.setContent(content);
+						infowindow.open(map, marker);
+					});
+				
+					markerArray.push(marker);
+				});
+
+      	      		setAllMap(map);
 			});
 		}
+
 
 		// Start the map using a function
 		google.maps.event.addDomListener(window, 'load', initialize);
@@ -146,3 +167,4 @@
     	return decodeURIComponent( this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2) );
 	} 
  
+
