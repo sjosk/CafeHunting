@@ -30,12 +30,12 @@
 				const markerInfo = marker.customInfo;
 				const isVisible = (
 					// (!openingFilter || markerInfo.open_time) &&
-					(!wifiFilter || (markerInfo.wifi >= 1 && markerInfo.wifi <= 4)) &&
-					(!seatsFilter || (markerInfo.seat >= 1 && markerInfo.seat <= 4)) &&
+					(!wifiFilter || markerInfo.wifi >= 4) &&
+					(!seatsFilter || markerInfo.seat >= 4) &&
 					(!socketFilter || (markerInfo.socket !== "maybe" && markerInfo.socket !== "" && markerInfo.socket.trim() !== "no"))&&
-					(!quietFilter || markerInfo.quiet <= 4)&&
-					(!cheapFilter || markerInfo.cheap <= 4)&&
-					(!musicFilter || markerInfo.music <= 4)&&
+					(!quietFilter || markerInfo.quiet >= 4)&&
+					(!cheapFilter || markerInfo.cheap >= 4)&&
+					(!musicFilter || markerInfo.music >= 4)&&
 					(!limitedTimeFilter || (markerInfo.limited_time !== "maybe" && markerInfo.limited_time !== "" && markerInfo.limited_time !== "yes"))&&
 					(!standingDeskFilter || (markerInfo.standing_desk !== "maybe" && markerInfo.standing_desk !== "" && markerInfo.standing_desk !== "no"))
 				
