@@ -46,6 +46,31 @@
 		}
 
 
+		//Check the Wi-Fi, Seats, Socket, and Quiet boxes
+		let filtersChecked = false;
+		
+		$('#workButton').click(function() {
+			if (filtersChecked) {
+				// If it was checked previously, deselect the checkbox now
+				$('#wifiToggle').prop('checked', false);
+				$('#seatsToggle').prop('checked', false);
+				$('#socketToggle').prop('checked', false);
+				$('#quietToggle').prop('checked', false);
+				filtersChecked = false;
+			} else {
+				// If it was not checked before, check the box now
+				$('#wifiToggle').prop('checked', true);
+				$('#seatsToggle').prop('checked', true);
+				$('#socketToggle').prop('checked', true);
+				$('#quietToggle').prop('checked', true);
+				filtersChecked = true;
+			}
+	
+			filterMarkers();
+		});
+	
+	
+
 		//Clear the selection of all filter checkboxes
 		$('#clearFiltersButton').click(function() {
 			// Clear all checkboxes from selected
@@ -62,7 +87,7 @@
 			filterMarkers();
 		});
 
-		
+
 		function initialize() {
 			
 			// Map Styling
