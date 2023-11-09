@@ -11,11 +11,11 @@
 	
 	$(document).ready(function() {
 
+		//to filter map markers based on different criteria selected by the user
 		$('.toggle-checkbox').change(function() {
 			filterMarkers();
 		});
 	
-		//to filter map markers based on different criteria selected by the user
 		function filterMarkers() {
 			// const openingFilter = $('#openingToggle').is(':checked');
 			const wifiFilter = $('#wifiToggle').is(':checked');
@@ -45,6 +45,24 @@
 			});
 		}
 
+
+		//Clear the selection of all filter checkboxes
+		$('#clearFiltersButton').click(function() {
+			// Clear all checkboxes from selected
+			$('#wifiToggle').prop('checked', false);
+			$('#seatsToggle').prop('checked', false);
+			$('#socketToggle').prop('checked', false);
+			$('#quietToggle').prop('checked', false);
+			$('#cheapToggle').prop('checked', false);
+			$('#musicToggle').prop('checked', false);
+			$('#limitedTimeToggle').prop('checked', false);
+			$('#standingDeskToggle').prop('checked', false);
+	
+			// Call the filterMarkers function to display all markers
+			filterMarkers();
+		});
+
+		
 		function initialize() {
 			
 			// Map Styling
