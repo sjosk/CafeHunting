@@ -1,3 +1,5 @@
+var circles = [];
+var markers = [];
 // Define Taipei city bounds
 var TAIPEI_BOUNDS = {
     north: 25.210,
@@ -24,24 +26,48 @@ var TAIPEI_BOUNDS = {
                   userLng >= TAIPEI_BOUNDS.west && userLng <= TAIPEI_BOUNDS.east) {
                   // If user is in the area of Taipei, set user's location as center and add a marker
                   map.setCenter(userPos);
+                  map.setZoom(17);
+                  clearOverlays();
                   new google.maps.Marker({
                       position: userPos,
                       map: map,
                       title: 'Here you are!'
                   });
+                   
+                    markers.push(marker);
+                  var circle = new google.maps.Circle({
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2,
+                    fillColor: '#FF0000',
+                    fillOpacity: 0.1,
+                    map: map,
+                    icon: user,
+                    center: userPos,
+                    radius: 500, 
+                    strokePattern: [5, 5]
+                });
+                  circles.push(circle);
+
+                    // reboot the button
+                    button.disabled = false;
+
               } else {
                   // If user is outside of Taipei, show an info window with a message
                   // Move the map center to Taipei city center
                   map.setCenter(TAIPEI_CENTER);
+                  map.setZoom(17);
                   var infoWindow = new google.maps.InfoWindow({
-                      content: ' 🚧 No database in your area. We only provide cafe information in Taipei City.',
+                      content: ' 🚧 No database in your area.'+'('+userLat+','+userLng+')'+'</br>'+' We only provide cafe information in Taipei City.',
                       position: TAIPEI_CENTER // show the message in the center of Taipei
                   });
-                  isInfoWindowOpen = true;//update the marker when infoWindow is open
+                  isInfoWindowOpen = true;//update the marker when infowindow is open
                   infoWindow.open(map);
               }
+             
+
               google.maps.event.addListener(infoWindow, 'closeclick', function() {
-                isInfoWindowOpen = false; // update the marker when infoWindow is closed
+                isInfoWindowOpen = false; // update the marker when infowindow is closed
             });
 
           }, function(error) {
@@ -64,3 +90,4 @@ var TAIPEI_BOUNDS = {
   
   // Button click listener
   document.getElementById('locateButton').addEventListener('click', locateUser);
+  
