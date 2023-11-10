@@ -82,6 +82,57 @@ $(document).ready(function() {
 		
 		//var url = "http://casa0017.cetools.org:8816/Table/Cafe";
 
+			//Check the Wi-Fi, Seats, Socket, Quiet and StandingDesk boxes
+	let workButtonChecked = false;
+	
+	$('#workButton').click(function() {
+		if (workButtonChecked) {
+			// If it was checked previously, deselect the checkbox now
+			$('#wifiToggle').prop('checked', false);
+			$('#seatsToggle').prop('checked', false);
+			$('#socketToggle').prop('checked', false);
+			$('#quietToggle').prop('checked', false);
+			$('#cheapToggle').prop('checked', false);
+			$('#musicToggle').prop('checked', false);
+			$('#limitedTimeToggle').prop('checked', false);
+			$('#standingDeskToggle').prop('checked', false);
+			workButtonChecked = false;
+		} else {
+			// If it was not checked before, check the box now
+			$('#wifiToggle').prop('checked', true);
+			$('#seatsToggle').prop('checked', true);
+			$('#socketToggle').prop('checked', true);
+			$('#quietToggle').prop('checked', true);
+			$('#cheapToggle').prop('checked', false);
+			$('#musicToggle').prop('checked', false);
+			$('#limitedTimeToggle').prop('checked', false);
+			$('#standingDeskToggle').prop('checked', true);
+			workButtonChecked = true;
+		}
+
+		filterMarkers();
+	});
+
+
+
+	//Clear the selection of all filter checkboxes
+	$('#clearFiltersButton').click(function() {
+		// Clear all checkboxes from selected
+		$('#wifiToggle').prop('checked', false);
+		$('#seatsToggle').prop('checked', false);
+		$('#socketToggle').prop('checked', false);
+		$('#quietToggle').prop('checked', false);
+		$('#cheapToggle').prop('checked', false);
+		$('#musicToggle').prop('checked', false);
+		$('#limitedTimeToggle').prop('checked', false);
+		$('#standingDeskToggle').prop('checked', false);
+
+		// Call the filterMarkers function to display all markers
+		filterMarkers();
+	});
+
+
+
 		$.getJSON("/back end/database/cafedata.json", function( data ) {
 		
 			
@@ -262,57 +313,6 @@ $(document).ready(function() {
 			marker.setVisible(isVisible);
 		});
 	}
-
-
-	//Check the Wi-Fi, Seats, Socket, Quiet and StandingDesk boxes
-	let workButtonChecked = false;
-	
-	$('#workButton').click(function() {
-		if (workButtonChecked) {
-			// If it was checked previously, deselect the checkbox now
-			$('#wifiToggle').prop('checked', false);
-			$('#seatsToggle').prop('checked', false);
-			$('#socketToggle').prop('checked', false);
-			$('#quietToggle').prop('checked', false);
-			$('#cheapToggle').prop('checked', false);
-			$('#musicToggle').prop('checked', false);
-			$('#limitedTimeToggle').prop('checked', false);
-			$('#standingDeskToggle').prop('checked', false);
-			workButtonChecked = false;
-		} else {
-			// If it was not checked before, check the box now
-			$('#wifiToggle').prop('checked', true);
-			$('#seatsToggle').prop('checked', true);
-			$('#socketToggle').prop('checked', true);
-			$('#quietToggle').prop('checked', true);
-			$('#cheapToggle').prop('checked', false);
-			$('#musicToggle').prop('checked', false);
-			$('#limitedTimeToggle').prop('checked', false);
-			$('#standingDeskToggle').prop('checked', true);
-			workButtonChecked = true;
-		}
-
-		filterMarkers();
-	});
-
-
-
-	//Clear the selection of all filter checkboxes
-	$('#clearFiltersButton').click(function() {
-		// Clear all checkboxes from selected
-		$('#wifiToggle').prop('checked', false);
-		$('#seatsToggle').prop('checked', false);
-		$('#socketToggle').prop('checked', false);
-		$('#quietToggle').prop('checked', false);
-		$('#cheapToggle').prop('checked', false);
-		$('#musicToggle').prop('checked', false);
-		$('#limitedTimeToggle').prop('checked', false);
-		$('#standingDeskToggle').prop('checked', false);
-
-		// Call the filterMarkers function to display all markers
-		filterMarkers();
-	});
-
 
 
 	// Start the map using a function
