@@ -11,90 +11,6 @@
 	
 	$(document).ready(function() {
 
-		//to filter map markers based on different criteria selected by the user
-		$('.toggle-checkbox').change(function() {
-			filterMarkers();
-		});
-	
-		function filterMarkers() {
-			// const openingFilter = $('#openingToggle').is(':checked');
-			const wifiFilter = $('#wifiToggle').is(':checked');
-			const seatsFilter = $('#seatsToggle').is(':checked');
-			const socketFilter = $('#socketToggle').is(':checked');
-			const quietFilter = $('#quietToggle').is(':checked');
-			const cheapFilter = $('#cheapToggle').is(':checked');
-			const musicFilter = $('#musicToggle').is(':checked');
-			const limitedTimeFilter = $('#limitedTimeToggle').is(':checked');
-			const standingDeskFilter = $('#standingDeskToggle').is(':checked');
-			markerArray.forEach(function(marker) {
-				const markerInfo = marker.customInfo;
-				const isVisible = (
-					// (!openingFilter || markerInfo.open_time) &&
-					(!wifiFilter || markerInfo.wifi >= 4) &&
-					(!seatsFilter || markerInfo.seat >= 4) &&
-					(!socketFilter || (markerInfo.socket !== "maybe" && markerInfo.socket !== "" && markerInfo.socket.trim() !== "no"))&&
-					(!quietFilter || markerInfo.quiet >= 4)&&
-					(!cheapFilter || markerInfo.cheap >= 4)&&
-					(!musicFilter || markerInfo.music >= 4)&&
-					(!limitedTimeFilter || (markerInfo.limited_time !== "maybe" && markerInfo.limited_time !== "" && markerInfo.limited_time !== "yes"))&&
-					(!standingDeskFilter || (markerInfo.standing_desk !== "maybe" && markerInfo.standing_desk !== "" && markerInfo.standing_desk !== "no"))
-				
-				);
-	
-				marker.setVisible(isVisible);
-			});
-		}
-
-
-		//Check the Wi-Fi, Seats, Socket, and Quiet boxes
-		let workButtonChecked = false;
-		
-		$('#workButton').click(function() {
-			if (workButtonChecked) {
-				// If it was checked previously, deselect the checkbox now
-				$('#wifiToggle').prop('checked', false);
-				$('#seatsToggle').prop('checked', false);
-				$('#socketToggle').prop('checked', false);
-				$('#quietToggle').prop('checked', false);
-				$('#cheapToggle').prop('checked', false);
-				$('#musicToggle').prop('checked', false);
-				$('#limitedTimeToggle').prop('checked', false);
-				$('#standingDeskToggle').prop('checked', false);
-				workButtonChecked = false;
-			} else {
-				// If it was not checked before, check the box now
-				$('#wifiToggle').prop('checked', true);
-				$('#seatsToggle').prop('checked', true);
-				$('#socketToggle').prop('checked', true);
-				$('#quietToggle').prop('checked', true);
-				$('#cheapToggle').prop('checked', false);
-				$('#musicToggle').prop('checked', false);
-				$('#limitedTimeToggle').prop('checked', false);
-				$('#standingDeskToggle').prop('checked', false);
-				workButtonChecked = true;
-			}
-	
-			filterMarkers();
-		});
-	
-	
-
-		//Clear the selection of all filter checkboxes
-		$('#clearFiltersButton').click(function() {
-			// Clear all checkboxes from selected
-			$('#wifiToggle').prop('checked', false);
-			$('#seatsToggle').prop('checked', false);
-			$('#socketToggle').prop('checked', false);
-			$('#quietToggle').prop('checked', false);
-			$('#cheapToggle').prop('checked', false);
-			$('#musicToggle').prop('checked', false);
-			$('#limitedTimeToggle').prop('checked', false);
-			$('#standingDeskToggle').prop('checked', false);
-	
-			// Call the filterMarkers function to display all markers
-			filterMarkers();
-		});
-
 
 		function initialize() {
 			
@@ -103,7 +19,7 @@
 				center: new google.maps.LatLng(25.0330, 121.5654), 
 				zoom: 13,
 				maxZoom: 20,
-				styles: greenMap,
+				styles: COFFEEMAP,
 				zoomControl     : true,
 				panControl      : true,
 				ScaleControl: true,
@@ -121,7 +37,7 @@
       },
 				panControlOptions: {
     				position: google.maps.ControlPosition.BOTTOM_LEFT 
-  	},
+	},
 				zoomControlOptions: {
 					style   : google.maps.ScaleControlStyle.SMALL,
         			position: google.maps.ControlPosition.LEFT_TOP
@@ -224,6 +140,91 @@
       	      		setAllMap(map);
 			});
 		}
+
+		//to filter map markers based on different criteria selected by the user
+		$('.toggle-checkbox').change(function() {
+			filterMarkers();
+		});
+	
+		function filterMarkers() {
+			// const openingFilter = $('#openingToggle').is(':checked');
+			const wifiFilter = $('#wifiToggle').is(':checked');
+			const seatsFilter = $('#seatsToggle').is(':checked');
+			const socketFilter = $('#socketToggle').is(':checked');
+			const quietFilter = $('#quietToggle').is(':checked');
+			const cheapFilter = $('#cheapToggle').is(':checked');
+			const musicFilter = $('#musicToggle').is(':checked');
+			const limitedTimeFilter = $('#limitedTimeToggle').is(':checked');
+			const standingDeskFilter = $('#standingDeskToggle').is(':checked');
+			markerArray.forEach(function(marker) {
+				const markerInfo = marker.customInfo;
+				const isVisible = (
+					// (!openingFilter || markerInfo.open_time) &&
+					(!wifiFilter || markerInfo.wifi >= 4) &&
+					(!seatsFilter || markerInfo.seat >= 4) &&
+					(!socketFilter || (markerInfo.socket !== "maybe" && markerInfo.socket !== "" && markerInfo.socket.trim() !== "no"))&&
+					(!quietFilter || markerInfo.quiet >= 4)&&
+					(!cheapFilter || markerInfo.cheap >= 4)&&
+					(!musicFilter || markerInfo.music >= 4)&&
+					(!limitedTimeFilter || (markerInfo.limited_time !== "maybe" && markerInfo.limited_time !== "" && markerInfo.limited_time !== "yes"))&&
+					(!standingDeskFilter || (markerInfo.standing_desk !== "maybe" && markerInfo.standing_desk !== "" && markerInfo.standing_desk !== "no"))
+				
+				);
+	
+				marker.setVisible(isVisible);
+			});
+		}
+
+
+		//Check the Wi-Fi, Seats, Socket, and Quiet boxes
+		let workButtonChecked = false;
+		
+		$('#workButton').click(function() {
+			if (workButtonChecked) {
+				// If it was checked previously, deselect the checkbox now
+				$('#wifiToggle').prop('checked', false);
+				$('#seatsToggle').prop('checked', false);
+				$('#socketToggle').prop('checked', false);
+				$('#quietToggle').prop('checked', false);
+				$('#cheapToggle').prop('checked', false);
+				$('#musicToggle').prop('checked', false);
+				$('#limitedTimeToggle').prop('checked', false);
+				$('#standingDeskToggle').prop('checked', false);
+				workButtonChecked = false;
+			} else {
+				// If it was not checked before, check the box now
+				$('#wifiToggle').prop('checked', true);
+				$('#seatsToggle').prop('checked', true);
+				$('#socketToggle').prop('checked', true);
+				$('#quietToggle').prop('checked', true);
+				$('#cheapToggle').prop('checked', false);
+				$('#musicToggle').prop('checked', false);
+				$('#limitedTimeToggle').prop('checked', false);
+				$('#standingDeskToggle').prop('checked', false);
+				workButtonChecked = true;
+			}
+	
+			filterMarkers();
+		});
+	
+	
+
+		//Clear the selection of all filter checkboxes
+		$('#clearFiltersButton').click(function() {
+			// Clear all checkboxes from selected
+			$('#wifiToggle').prop('checked', false);
+			$('#seatsToggle').prop('checked', false);
+			$('#socketToggle').prop('checked', false);
+			$('#quietToggle').prop('checked', false);
+			$('#cheapToggle').prop('checked', false);
+			$('#musicToggle').prop('checked', false);
+			$('#limitedTimeToggle').prop('checked', false);
+			$('#standingDeskToggle').prop('checked', false);
+	
+			// Call the filterMarkers function to display all markers
+			filterMarkers();
+		});
+
 
 
 		// Start the map using a function
