@@ -8,7 +8,7 @@ var portNumber = 8816;
 var connection = mysql.createConnection({
   host: 'casa0017.cetools.org',
   user: 'zczqy80',
-  password: 'qafizojeya',
+  password: 'xxx',
   database: 'zczqy80'
 });
 
