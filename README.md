@@ -16,9 +16,17 @@ Error handling is present at each step, logging relevant messages if an error oc
 
 ### Backendresearch.js
 The 'backendresearch.js' file, serves as a backend script for a web application using Node.js with Express and MySQL. It begins by importing the necessary modules: express for server functionality and mysql for database interactions.
+
+
 It initialises an Express application and sets a variable portNumber to define the port on which the server listens. It then establishes a MySQL database connection using "mysql.createConnection" and provides the necessary credentials and database information. The script handles connection errors and confirms a successful database connection with a console message.
+
+
 A key feature of this script is the API endpoint '/Table/Cafe', which is set up to handle GET requests. When this endpoint is accessed, the script executes a SQL query to select all records from the 'Cafe' table in the database where the 'wifi' and 'quiet' ratings are greater than 4. It logs the SQL statement for debugging purposes.
+
+
 A key functionality of the script is the API endpoint "/Table/Cafe", which is set up to handle GET requests. When accessing this endpoint, the script performs a SQL query to select all records from the "Cafe" table in the database that have a "wifi" and "quiet" rating greater than 4. The script logs the SQL statements for debugging purposes.
+
+
 The script uses the connection.query method to execute the SQL query. If an error occurs during query execution, the script logs the error and sends a 500 status response. If the query succeeds, the script checks to see if any records were returned. If a record is found, it is logged and sent as a response; otherwise, a message is logged stating that no result was found and a 404 status response is sent.
 
 
