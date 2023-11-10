@@ -15,6 +15,99 @@ var user = {
 
 $(document).ready(function() {
 
+	
+    // Initialize variable value
+	let wifi = '';
+	let seat = '';
+	let quiet = '';
+	let socket = '';
+	let standing_desk = '';
+	let cheap = '';
+	let music = '';
+	let limited_time = '';
+
+
+    // Get the sliding button and the element that displays the URL
+    const wifiToggle = document.getElementById('wifiToggle');
+    const seatsToggle = document.getElementById('seatsToggle');
+	const quietToggle = document.getElementById('quietToggle');
+	const socketToggle = document.getElementById('socketToggle');
+	const standingDeskToggle = document.getElementById('standingDeskToggle');
+	const cheapToggle = document.getElementById('cheapToggle');
+	const musicToggle = document.getElementById('musicToggle');
+	const limitedTimeToggle = document.getElementById('limitedTimeToggle');
+    const generatedUrlElement = document.getElementById('generatedUrl');
+
+    // When the sliding button Wifi is toggled, switch the wifi variable value
+    wifiToggle.addEventListener('change', function() {
+		wifi = wifiToggle.checked ? 3 : '';
+		displayGeneratedUrl();
+	});
+
+    // switch the seat variable value
+    seatsToggle.addEventListener('change', function() {
+		seat = seatsToggle.checked ? 3 : '';
+		displayGeneratedUrl();
+    });
+
+	// switch the quiet variable value
+	quietToggle.addEventListener('change', function() {
+		quiet = quietToggle.checked ? 3 : '';
+		displayGeneratedUrl();
+		});
+
+	// switch the socket variable value
+	socketToggle.addEventListener('change', function() {
+		socket = socketToggle.checked ? 'yes' : '';
+		displayGeneratedUrl();
+		});
+
+	// switch the standing_desk variable value
+	standingDeskToggle.addEventListener('change', function() {
+		standing_desk = standingDeskToggle.checked ? 'yes' : '';
+		displayGeneratedUrl();
+	});
+
+	// switch the cheap variable value
+	cheapToggle.addEventListener('change', function() {
+		cheap = cheapToggle.checked ? 3 : '';
+		displayGeneratedUrl();
+	});
+
+	// switch the music variable value
+	musicToggle.addEventListener('change', function() {
+		music = musicToggle.checked ? 3 : '';
+		displayGeneratedUrl();
+	});
+
+	// switch the limited time variable value
+	limitedTimeToggle.addEventListener('change', function() {
+		limited_time = limitedTimeToggle.checked ? 'no' : '';
+		displayGeneratedUrl();
+	});
+
+    // Display the generated URL on the page
+    function displayGeneratedUrl() {
+      const baseURL = 'http://casa0017.cetools.org:8816/Table/Cafe';
+      const url = new URL(baseURL);
+      url.searchParams.append('wifi', wifi);
+      url.searchParams.append('seat', seat);
+	  url.searchParams.append('quiet', quiet);
+	  url.searchParams.append('socket', socket);
+	  url.searchParams.append('standing_desk', standing_desk);
+	  url.searchParams.append('cheap', cheap);
+	  url.searchParams.append('music', music);
+	  url.searchParams.append('limited_time', limited_time);
+
+      const generatedUrl = url.toString();
+
+      generatedUrlElement.textContent = 'Generated URL: ' + generatedUrl;
+    
+
+	// Call the getData function, passing the generated URL
+	getData(generatedUrl);
+}
+
 
 	function initialize() {
 		
@@ -61,11 +154,13 @@ $(document).ready(function() {
 			console.log("Center: " + map.getCenter().lat() + ", " +  map.getCenter().lng());
 			getData(map.getCenter().lat(),map.getCenter().lng());
 			//display the marker after dragging
+			displayGeneratedUrl();
 			setAllMap(map);
 		
 		});
 		getData(map.getCenter().lat(),map.getCenter().lng());
-		
+		// Call the displayGeneratedUrl function when the page loads
+		displayGeneratedUrl();
 	}
 
 	function getData(lat, lng){
@@ -78,63 +173,17 @@ $(document).ready(function() {
 		markerArray = [];
 		//console.log(dataArray.length);
 
-		// Point to our API and link to the Cafe Database for the values
-		
-		//var url = "http://casa0017.cetools.org:8816/Table/Cafe";
 
-			//Check the Wi-Fi, Seats, Socket, Quiet and StandingDesk boxes
-	let workButtonChecked = false;
+
+	}
+		//  BackE: Edit this variable so that it points to our API Look at Cafe Database for the values you need
+		// var url = "http://casa0017.cetools.org:8816/Table/Cafe";
 	
-	$('#workButton').click(function() {
-		if (workButtonChecked) {
-			// If it was checked previously, deselect the checkbox now
-			$('#wifiToggle').prop('checked', false);
-			$('#seatsToggle').prop('checked', false);
-			$('#socketToggle').prop('checked', false);
-			$('#quietToggle').prop('checked', false);
-			$('#cheapToggle').prop('checked', false);
-			$('#musicToggle').prop('checked', false);
-			$('#limitedTimeToggle').prop('checked', false);
-			$('#standingDeskToggle').prop('checked', false);
-			workButtonChecked = false;
-		} else {
-			// If it was not checked before, check the box now
-			$('#wifiToggle').prop('checked', true);
-			$('#seatsToggle').prop('checked', true);
-			$('#socketToggle').prop('checked', true);
-			$('#quietToggle').prop('checked', true);
-			$('#cheapToggle').prop('checked', false);
-			$('#musicToggle').prop('checked', false);
-			$('#limitedTimeToggle').prop('checked', false);
-			$('#standingDeskToggle').prop('checked', true);
-			workButtonChecked = true;
-		}
-
-		filterMarkers();
-	});
-
-
-
-	//Clear the selection of all filter checkboxes
-	$('#clearFiltersButton').click(function() {
-		// Clear all checkboxes from selected
-		$('#wifiToggle').prop('checked', false);
-		$('#seatsToggle').prop('checked', false);
-		$('#socketToggle').prop('checked', false);
-		$('#quietToggle').prop('checked', false);
-		$('#cheapToggle').prop('checked', false);
-		$('#musicToggle').prop('checked', false);
-		$('#limitedTimeToggle').prop('checked', false);
-		$('#standingDeskToggle').prop('checked', false);
-
-		// Call the filterMarkers function to display all markers
-		filterMarkers();
-	});
-
-
-
-		$.getJSON("/back end/database/cafedata.json", function( data ) {
-		
+	function getData(url) {
+			setAllMap(null);
+			markerArray = [];
+	
+		$.getJSON( url , function( data ) {
 			
 			//Create the markers with the loop
 			$.each(data, function( k, v ) {
@@ -144,132 +193,131 @@ $(document).ready(function() {
 				dataArray.push(latLng);
 
 				var marker = new google.maps.Marker({
-					 position: latLng, 
-					map: map,
-					icon: icon,	
-					customInfo: {
-						name: v.name,
-						city: v.city,
-						wifi: v.wifi,
-						seat: v.seat,
-						quiet: v.quiet,
-						cheap: v.cheap,
-						music: v.music,
-						url: v.url,
-						address: v.address,
-						limited_time: v.limited_time,
-						socket: v.socket,
-						standing_desk: v.standing_desk,
-						open_time: v.open_time
-					}
-				 });
+					position: latLng, 
+				   map: map,
+				   icon: icon,	
+				   customInfo: {
+					   name: v.name,
+					   city: v.city,
+					   wifi: v.wifi,
+					   seat: v.seat,
+					   quiet: v.quiet,
+					   cheap: v.cheap,
+					   music: v.music,
+					   url: v.url,
+					   address: v.address,
+					   limited_time: v.limited_time,
+					   socket: v.socket,
+					   standing_desk: v.standing_desk,
+					   open_time: v.open_time
+				   }
+				});
 
-				
+			   
 
+			   // //Using Flickr API to get the photo as an example(waiting for our database)
+			   google.maps.event.addListener(marker, 'click', function () {
+				   infowindow.setContent(""); 
+		   
+				   // Use svg icons to display instead of text content
+				   var wifiIcon = '';
+				   if (marker.customInfo.wifi >= 4) {
+					   wifiIcon = 'wifi1.svg';
+				   } else if (marker.customInfo.wifi === 3) {
+					   wifiIcon = 'wifi2.svg';
+				   } else if (marker.customInfo.wifi <= 2) {
+					   wifiIcon = 'wifi3.svg';
+				   }
+				   
+				   var seatIcon = '';
+				   if (marker.customInfo.seat >= 4) {
+					   seatIcon = 'seat1.svg';
+				   } else if (marker.customInfo.seat === 3) {
+					   seatIcon = 'seat2.svg';
+				   } else if (marker.customInfo.seat <= 2) {
+					   seatIcon = 'seat3.svg';
+				   }
 
-				// //Using Flickr API to get the photo as an example(waiting for our database)
-				google.maps.event.addListener(marker, 'click', function () {
-					infowindow.setContent(""); 
-			
-					// Use svg icons to display instead of text content
-					var wifiIcon = '';
-					if (marker.customInfo.wifi >= 4) {
-						wifiIcon = 'wifi1.svg';
-					} else if (marker.customInfo.wifi === 3) {
-						wifiIcon = 'wifi2.svg';
-					} else if (marker.customInfo.wifi <= 2) {
-						wifiIcon = 'wifi3.svg';
-					}
-					
-					var seatIcon = '';
-					if (marker.customInfo.seat >= 4) {
-						seatIcon = 'seat1.svg';
-					} else if (marker.customInfo.seat === 3) {
-						seatIcon = 'seat2.svg';
-					} else if (marker.customInfo.seat <= 2) {
-						seatIcon = 'seat3.svg';
-					}
+				   var socketIcon = '';
+				   if (marker.customInfo.socket === 'yes') {
+					   socketIcon = 'socket1.svg';
+				   } else if (marker.customInfo.socket === 'no') {
+					   socketIcon = 'socket3.svg';
+				   } else if (marker.customInfo.socket === 'maybe') {
+					   socketIcon = 'socket2.svg';
+				   } else if (marker.customInfo.socket === '') {
+					   socketIcon = 'socket4.svg';
+				   }
 
-					var socketIcon = '';
-					if (marker.customInfo.socket === 'yes') {
-						socketIcon = 'socket1.svg';
-					} else if (marker.customInfo.socket === 'no') {
-						socketIcon = 'socket3.svg';
-					} else if (marker.customInfo.socket === 'maybe') {
-						socketIcon = 'socket2.svg';
-					} else if (marker.customInfo.socket === '') {
-						socketIcon = 'socket4.svg';
-					}
+				   var quietIcon = '';
+				   if (marker.customInfo.quiet >= 4) {
+					   quietIcon = 'quiet1.svg';
+				   } else if (marker.customInfo.quiet === 3) {
+					   quietIcon = 'quiet2.svg';
+				   } else if (marker.customInfo.quiet <= 2) {
+					   quietIcon = 'quiet3.svg';
+				   }
 
-					var quietIcon = '';
-					if (marker.customInfo.quiet >= 4) {
-						quietIcon = 'quiet1.svg';
-					} else if (marker.customInfo.quiet === 3) {
-						quietIcon = 'quiet2.svg';
-					} else if (marker.customInfo.quiet <= 2) {
-						quietIcon = 'quiet3.svg';
-					}
+				   var cheapIcon = '';
+				   if (marker.customInfo.cheap >= 4) {
+					   cheapIcon = 'cheap1.svg';
+				   } else if (marker.customInfo.cheap === 3) {
+					   cheapIcon = 'cheap2.svg';
+				   } else if (marker.customInfo.cheap <= 2) {
+					   cheapIcon = 'cheap3.svg';
+				   }
 
-					var cheapIcon = '';
-					if (marker.customInfo.cheap >= 4) {
-						cheapIcon = 'cheap1.svg';
-					} else if (marker.customInfo.cheap === 3) {
-						cheapIcon = 'cheap2.svg';
-					} else if (marker.customInfo.cheap <= 2) {
-						cheapIcon = 'cheap3.svg';
-					}
+				   var musicIcon = '';
+				   if (marker.customInfo.music >= 4) {
+					   musicIcon = 'music1.svg';
+				   } else if (marker.customInfo.music === 3) {
+					   musicIcon = 'music2.svg';
+				   } else if (marker.customInfo.music <= 2) {
+					   musicIcon = 'music3.svg';
+				   }
 
-					var musicIcon = '';
-					if (marker.customInfo.music >= 4) {
-						musicIcon = 'music1.svg';
-					} else if (marker.customInfo.music === 3) {
-						musicIcon = 'music2.svg';
-					} else if (marker.customInfo.music <= 2) {
-						musicIcon = 'music3.svg';
-					}
+				   var limitedTimeIcon = '';
+				   if (marker.customInfo.limited_time === 'no') {
+					   limitedTimeIcon = 'limited-time-1.svg';
+				   } else if (marker.customInfo.limited_time === 'yes') {
+					   limitedTimeIcon = 'limited-time-3.svg';
+				   } else if (marker.customInfo.limited_time === 'maybe') {
+					   limitedTimeIcon = 'limited-time-2.svg';
+				   } else if (marker.customInfo.limited_time === '') {
+					   limitedTimeIcon = 'limited-time-4.svg';
+				   }
 
-					var limitedTimeIcon = '';
-					if (marker.customInfo.limited_time === 'no') {
-						limitedTimeIcon = 'limited-time-1.svg';
-					} else if (marker.customInfo.limited_time === 'yes') {
-						limitedTimeIcon = 'limited-time-3.svg';
-					} else if (marker.customInfo.limited_time === 'maybe') {
-						limitedTimeIcon = 'limited-time-2.svg';
-					} else if (marker.customInfo.limited_time === '') {
-						limitedTimeIcon = 'limited-time-4.svg';
-					}
+				   var standingdeskIcon = '';
+				   if (marker.customInfo.standing_desk === 'yes') {
+					   standingdeskIcon = 'desk1.svg';
+				   } else if (marker.customInfo.standing_desk === 'no') {
+					   standingdeskIcon = 'desk3.svg';
+				   } else if (marker.customInfo.standing_desk === 'maybe') {
+					   standingdeskIcon = 'desk2.svg';
+				   } else if (marker.customInfo.standing_desk === '') {
+					   standingdeskIcon = 'desk4.svg';
+				   }
 
-					var standingdeskIcon = '';
-					if (marker.customInfo.standing_desk === 'yes') {
-						standingdeskIcon = 'desk1.svg';
-					} else if (marker.customInfo.standing_desk === 'no') {
-						standingdeskIcon = 'desk3.svg';
-					} else if (marker.customInfo.standing_desk === 'maybe') {
-						standingdeskIcon = 'desk2.svg';
-					} else if (marker.customInfo.standing_desk === '') {
-						standingdeskIcon = 'desk4.svg';
-					}
+				   var openTimeContent = marker.customInfo.open_time.trim() !== '' ? marker.customInfo.open_time : 'Information missing';
 
-					var openTimeContent = marker.customInfo.open_time.trim() !== '' ? marker.customInfo.open_time : 'Information missing';
+				   var urlContent = marker.customInfo.url.trim() !== '' ? `<a href="${marker.customInfo.url}" target="_blank">${marker.customInfo.url}</a>` : 'Information missing';
 
-					var urlContent = marker.customInfo.url.trim() !== '' ? `<a href="${marker.customInfo.url}" target="_blank">${marker.customInfo.url}</a>` : 'Information missing';
-
-					var content = `
-						<b>Name:</b> ${marker.customInfo.name}<br>
-						<b>City:</b> ${marker.customInfo.city}<br>
-						<b>Address:</b> ${marker.customInfo.address}<br>
-						<img src="img/icons/${wifiIcon}" width="25" height="25">
-						<img src="img/icons/${seatIcon}" width="25" height="25">
-						<img src="img/icons/${socketIcon}" width="25" height="25">
-						<img src="img/icons/${quietIcon}" width="25" height="25">
-						<img src="img/icons/${standingdeskIcon}" width="25" height="25">
-						<img src="img/icons/${cheapIcon}" width="25" height="25">
-						<img src="img/icons/${musicIcon}" width="25" height="25">  
-						<img src="img/icons/${limitedTimeIcon}" width="25" height="25">
-						<br>
-						<b>Open Time:</b> ${openTimeContent}<br>
-						<b>URL:</b> ${urlContent}
-					`; 
+				   var content = `
+					   <b>Name:</b> ${marker.customInfo.name}<br>
+					   <b>City:</b> ${marker.customInfo.city}<br>
+					   <b>Address:</b> ${marker.customInfo.address}<br>
+					   <img src="img/icons/${wifiIcon}" width="25" height="25">
+					   <img src="img/icons/${seatIcon}" width="25" height="25">
+					   <img src="img/icons/${socketIcon}" width="25" height="25">
+					   <img src="img/icons/${quietIcon}" width="25" height="25">
+					   <img src="img/icons/${standingdeskIcon}" width="25" height="25">
+					   <img src="img/icons/${cheapIcon}" width="25" height="25">
+					   <img src="img/icons/${musicIcon}" width="25" height="25">  
+					   <img src="img/icons/${limitedTimeIcon}" width="25" height="25">
+					   <br>
+					   <b>Open Time:</b> ${openTimeContent}<br>
+					   <b>URL:</b> ${urlContent}
+				   `; 
 			
 					infowindow.setContent(content);
 					infowindow.open(map, marker);
@@ -279,38 +327,6 @@ $(document).ready(function() {
 			});
 
 					setAllMap(map);
-		});
-	}
-
-	//to filter map markers based on different criteria selected by the user
-	$('.toggle-checkbox').change(function() {
-		filterMarkers();
-	});
-
-	function filterMarkers() {
-		const wifiFilter = $('#wifiToggle').is(':checked');
-		const seatsFilter = $('#seatsToggle').is(':checked');
-		const socketFilter = $('#socketToggle').is(':checked');
-		const quietFilter = $('#quietToggle').is(':checked');
-		const cheapFilter = $('#cheapToggle').is(':checked');
-		const musicFilter = $('#musicToggle').is(':checked');
-		const limitedTimeFilter = $('#limitedTimeToggle').is(':checked');
-		const standingDeskFilter = $('#standingDeskToggle').is(':checked');
-		markerArray.forEach(function(marker) {
-			const markerInfo = marker.customInfo;
-			const isVisible = (
-				(!wifiFilter || markerInfo.wifi >= 4) &&
-				(!seatsFilter || markerInfo.seat >= 4) &&
-				(!socketFilter || (markerInfo.socket !== "maybe" && markerInfo.socket !== "" && markerInfo.socket.trim() !== "no"))&&
-				(!quietFilter || markerInfo.quiet >= 4)&&
-				(!cheapFilter || markerInfo.cheap >= 4)&&
-				(!musicFilter || markerInfo.music >= 4)&&
-				(!limitedTimeFilter || (markerInfo.limited_time !== "maybe" && markerInfo.limited_time !== "" && markerInfo.limited_time !== "yes"))&&
-				(!standingDeskFilter || (markerInfo.standing_desk !== "maybe" && markerInfo.standing_desk !== "" && markerInfo.standing_desk !== "no"))
-			
-			);
-
-			marker.setVisible(isVisible);
 		});
 	}
 
@@ -343,4 +359,3 @@ function clearMarkers() {
 String.prototype.replaceAll = function(str1, str2, ignore) {
 	return decodeURIComponent( this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2) );
 } 
-
