@@ -10,5 +10,6 @@ The objective of the website is to establish a platform that generates suitable 
 The Taipei Cafe API is accessible at [https://cafenomad.tw/api/v1.2/cafes/taipei/]. This API generates a file known as [Cafe.sql](/CafeHunting/back end/database/Cafe.sql/), which is then converted into a .json format. This conversion results in the creation of a database named [cafedata.json](/CafeHuntingback end/database/cafedata.json/).
 
 
+
 ## Connecting frontend and backend
 
