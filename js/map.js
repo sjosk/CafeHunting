@@ -81,7 +81,7 @@ $(document).ready(function() {
 		// Point to our API and link to the Cafe Database for the values
 		//var url = "http://casa0017.cetools.org:8816/Table/Cafe";
 
-		$.getJSON("./cafedata.json", function( data ) {
+		$.getJSON("/back end/database/cafedata.json", function( data ) {
 			
 			//Create the markers with the loop
 			$.each(data, function( k, v ) {
