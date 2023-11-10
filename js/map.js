@@ -114,18 +114,97 @@
 					google.maps.event.addListener(marker, 'click', function () {
 						infowindow.setContent(""); 
 				
+						// Use svg icons to display instead of text content
+						var wifiIcon = '';
+						if (marker.customInfo.wifi >= 4) {
+							wifiIcon = 'wifi1.svg';
+						} else if (marker.customInfo.wifi === 3) {
+							wifiIcon = 'wifi2.svg';
+						} else if (marker.customInfo.wifi <= 2) {
+							wifiIcon = 'wifi3.svg';
+						}
+						
+						var seatIcon = '';
+						if (marker.customInfo.seat >= 4) {
+							seatIcon = 'seat1.svg';
+						} else if (marker.customInfo.seat === 3) {
+							seatIcon = 'seat2.svg';
+						} else if (marker.customInfo.seat <= 2) {
+							seatIcon = 'seat3.svg';
+						}
+
+						var socketIcon = '';
+						if (marker.customInfo.socket === 'yes') {
+							socketIcon = 'socket1.svg';
+						} else if (marker.customInfo.socket === 'no') {
+							socketIcon = 'socket3.svg';
+						} else if (marker.customInfo.socket === 'maybe') {
+							socketIcon = 'socket2.svg';
+						} else if (marker.customInfo.socket === '') {
+							socketIcon = 'socket4.svg';
+						}
+
+						var quietIcon = '';
+						if (marker.customInfo.quiet >= 4) {
+							quietIcon = 'quiet1.svg';
+						} else if (marker.customInfo.quiet === 3) {
+							quietIcon = 'quiet2.svg';
+						} else if (marker.customInfo.quiet <= 2) {
+							quietIcon = 'quiet3.svg';
+						}
+
+						var cheapIcon = '';
+						if (marker.customInfo.cheap >= 4) {
+							cheapIcon = 'cheap1.svg';
+						} else if (marker.customInfo.cheap === 3) {
+							cheapIcon = 'cheap2.svg';
+						} else if (marker.customInfo.cheap <= 2) {
+							cheapIcon = 'cheap3.svg';
+						}
+
+						var musicIcon = '';
+						if (marker.customInfo.music >= 4) {
+							musicIcon = 'music1.svg';
+						} else if (marker.customInfo.music === 3) {
+							musicIcon = 'music2.svg';
+						} else if (marker.customInfo.music <= 2) {
+							musicIcon = 'music3.svg';
+						}
+
+						var limitedTimeIcon = '';
+						if (marker.customInfo.limited_time === 'no') {
+							limitedTimeIcon = 'limited-time-1.svg';
+						} else if (marker.customInfo.limited_time === 'yes') {
+							limitedTimeIcon = 'limited-time-3.svg';
+						} else if (marker.customInfo.limited_time === 'maybe') {
+							limitedTimeIcon = 'limited-time-2.svg';
+						} else if (marker.customInfo.limited_time === '') {
+							limitedTimeIcon = 'limited-time-4.svg';
+						}
+
+						var standingdeskIcon = '';
+						if (marker.customInfo.standing_desk === 'yes') {
+							standingdeskIcon = 'desk1.svg';
+						} else if (marker.customInfo.standing_desk === 'no') {
+							standingdeskIcon = 'desk3.svg';
+						} else if (marker.customInfo.standing_desk === 'maybe') {
+							standingdeskIcon = 'desk2.svg';
+						} else if (marker.customInfo.standing_desk === '') {
+							standingdeskIcon = 'desk4.svg';
+						}
+
 						var content = `
 							<b>Name:</b> ${marker.customInfo.name}<br>
 							<b>City:</b> ${marker.customInfo.city}<br>
 							<b>Address:</b> ${marker.customInfo.address}<br>
-							<b>Wifi:</b> ${marker.customInfo.wifi}<br>
-							<b>Seat:</b> ${marker.customInfo.seat}<br>
-							<b>Quiet:</b> ${marker.customInfo.quiet}<br>
-							<b>Cheap:</b> ${marker.customInfo.cheap}<br>
-							<b>Music:</b> ${marker.customInfo.music}<br>
-							<b>Limited time:</b> ${marker.customInfo.limited_time}<br>
-							<b>Socket:</b> ${marker.customInfo.socket}<br>
-							<b>Standing desk:</b> ${marker.customInfo.standing_desk}<br>
+							<img src="img/icons/${wifiIcon}" width="25" height="25">
+							<img src="img/icons/${seatIcon}" width="25" height="25">
+							<img src="img/icons/${socketIcon}" width="25" height="25">
+							<img src="img/icons/${quietIcon}" width="25" height="25">
+							<img src="img/icons/${cheapIcon}" width="25" height="25">
+							<img src="img/icons/${musicIcon}" width="25" height="25">  
+							<img src="img/icons/${limitedTimeIcon}" width="25" height="25">
+							<img src="img/icons/${standingdeskIcon}" width="25" height="25"> <br>
 							<b>Open Time:</b> ${marker.customInfo.open_time}<br>
 							<b>URL:</b> <a href="${marker.customInfo.url}" target="_blank">${marker.customInfo.url}</a>
 						`; 
