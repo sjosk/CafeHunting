@@ -31,7 +31,7 @@ function demo() {
         map: map,
         center: MRT,
         radius: 500, 
-        strokePattern: [5, 5] // 虚线样式：实线长度10，空白长度10
+        strokePattern: [5, 5] // the stroke style
     });
 
     // Add circles to array
