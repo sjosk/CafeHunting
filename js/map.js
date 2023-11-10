@@ -79,9 +79,11 @@ $(document).ready(function() {
 		//console.log(dataArray.length);
 
 		// Point to our API and link to the Cafe Database for the values
+		
 		//var url = "http://casa0017.cetools.org:8816/Table/Cafe";
 
 		$.getJSON("/back end/database/cafedata.json", function( data ) {
+		
 			
 			//Create the markers with the loop
 			$.each(data, function( k, v ) {
@@ -197,6 +199,10 @@ $(document).ready(function() {
 						standingdeskIcon = 'desk4.svg';
 					}
 
+					var openTimeContent = marker.customInfo.open_time.trim() !== '' ? marker.customInfo.open_time : 'Information missing';
+
+					var urlContent = marker.customInfo.url.trim() !== '' ? `<a href="${marker.customInfo.url}" target="_blank">${marker.customInfo.url}</a>` : 'Information missing';
+
 					var content = `
 						<b>Name:</b> ${marker.customInfo.name}<br>
 						<b>City:</b> ${marker.customInfo.city}<br>
@@ -205,12 +211,13 @@ $(document).ready(function() {
 						<img src="img/icons/${seatIcon}" width="25" height="25">
 						<img src="img/icons/${socketIcon}" width="25" height="25">
 						<img src="img/icons/${quietIcon}" width="25" height="25">
+						<img src="img/icons/${standingdeskIcon}" width="25" height="25">
 						<img src="img/icons/${cheapIcon}" width="25" height="25">
 						<img src="img/icons/${musicIcon}" width="25" height="25">  
 						<img src="img/icons/${limitedTimeIcon}" width="25" height="25">
-						<img src="img/icons/${standingdeskIcon}" width="25" height="25"> <br>
-						<b>Open Time:</b> ${marker.customInfo.open_time}<br>
-						<b>URL:</b> <a href="${marker.customInfo.url}" target="_blank">${marker.customInfo.url}</a>
+						<br>
+						<b>Open Time:</b> ${openTimeContent}<br>
+						<b>URL:</b> ${urlContent}
 					`; 
 			
 					infowindow.setContent(content);
@@ -230,7 +237,6 @@ $(document).ready(function() {
 	});
 
 	function filterMarkers() {
-		// const openingFilter = $('#openingToggle').is(':checked');
 		const wifiFilter = $('#wifiToggle').is(':checked');
 		const seatsFilter = $('#seatsToggle').is(':checked');
 		const socketFilter = $('#socketToggle').is(':checked');
@@ -242,7 +248,6 @@ $(document).ready(function() {
 		markerArray.forEach(function(marker) {
 			const markerInfo = marker.customInfo;
 			const isVisible = (
-				// (!openingFilter || markerInfo.open_time) &&
 				(!wifiFilter || markerInfo.wifi >= 4) &&
 				(!seatsFilter || markerInfo.seat >= 4) &&
 				(!socketFilter || (markerInfo.socket !== "maybe" && markerInfo.socket !== "" && markerInfo.socket.trim() !== "no"))&&
