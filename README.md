@@ -22,5 +22,6 @@ A key functionality of the script is the API endpoint "/Table/Cafe", which is se
 The script uses the connection.query method to execute the SQL query. If an error occurs during query execution, the script logs the error and sends a 500 status response. If the query succeeds, the script checks to see if any records were returned. If a record is found, it is logged and sent as a response; otherwise, a message is logged stating that no result was found and a 404 status response is sent.
 
 
+
 ## Connecting frontend and backend
 
