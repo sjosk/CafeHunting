@@ -10,6 +10,10 @@ var TAIPEI_BOUNDS = {
   var TAIPEI_CENTER = new google.maps.LatLng(25.0330, 121.5654);
   
   function locateUser() {
+    if (isInfoWindowOpen) {
+        return;
+    }
+
       if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
               var userLat = position.coords.latitude;
@@ -33,8 +37,13 @@ var TAIPEI_BOUNDS = {
                       content: ' 🚧 No database in your area. We only provide cafe information in Taipei City.',
                       position: TAIPEI_CENTER // show the message in the center of Taipei
                   });
+                  isInfoWindowOpen = true;//update the marker when infoWindow is open
                   infoWindow.open(map);
               }
+              google.maps.event.addListener(infoWindow, 'closeclick', function() {
+                isInfoWindowOpen = false; // update the marker when infoWindow is closed
+            });
+
           }, function(error) {
               // Error handling
               handleLocationError(true, TAIPEI_CENTER);
@@ -55,4 +64,3 @@ var TAIPEI_BOUNDS = {
   
   // Button click listener
   document.getElementById('locateButton').addEventListener('click', locateUser);
-  
