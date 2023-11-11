@@ -15,7 +15,45 @@ var user = {
 
 $(document).ready(function() {
 
-	
+// Add worfing mode
+// Initialize the state of the work button
+let workButtonChecked = false;
+
+$('#workButton').click(function() {
+    // Toggle the state of the work button
+    workButtonChecked = !workButtonChecked;
+
+    // turn on the buttons for Wi-Fi, seats, quiet, socket, and standing desk, and turn off the other buttons.
+    $('#wifiToggle').prop('checked', true);
+    $('#seatsToggle').prop('checked', true);
+    $('#quietToggle').prop('checked', true);
+    $('#socketToggle').prop('checked', true);
+    $('#standingDeskToggle').prop('checked', true);
+
+    //Close other buttons
+    $('#cheapToggle').prop('checked', false);
+    $('#musicToggle').prop('checked', false);
+    $('#limitedTimeToggle').prop('checked', false);
+
+    displayGeneratedUrl();
+});
+
+
+	// Clear all filters
+	$('#clearFiltersButton').click(function() {
+		$('#wifiToggle').prop('checked', false);
+		$('#seatsToggle').prop('checked', false);
+		$('#quietToggle').prop('checked', false);
+		$('#socketToggle').prop('checked', false);
+		$('#standingDeskToggle').prop('checked', false);
+		$('#cheapToggle').prop('checked', false);
+		$('#musicToggle').prop('checked', false);
+		$('#limitedTimeToggle').prop('checked', false);
+
+		displayGeneratedUrl();
+	});
+
+
     // Initialize variable value
 	let wifi = '';
 	let seat = '';
@@ -90,11 +128,11 @@ $(document).ready(function() {
     function displayGeneratedUrl() {
       const baseURL = 'http://casa0017.cetools.org:8816/Table/Cafe';
       const url = new URL(baseURL);
-      url.searchParams.append('wifi', wifi);
-      url.searchParams.append('seat', seat);
-	  url.searchParams.append('quiet', quiet);
-	  url.searchParams.append('socket', socket);
-	  url.searchParams.append('standing_desk', standing_desk);
+	  url.searchParams.append('wifi', $('#wifiToggle').is(':checked') ? 3 : '');
+	  url.searchParams.append('seat', $('#seatsToggle').is(':checked') ? 3 : '');
+	  url.searchParams.append('quiet', $('#quietToggle').is(':checked') ? 3 : '');
+	  url.searchParams.append('socket', $('#socketToggle').is(':checked') ? 'yes' : '');
+	  url.searchParams.append('standing_desk', $('#standingDeskToggle').is(':checked') ? 'yes' : '');
 	  url.searchParams.append('cheap', cheap);
 	  url.searchParams.append('music', music);
 	  url.searchParams.append('limited_time', limited_time);
@@ -103,6 +141,7 @@ $(document).ready(function() {
 
       generatedUrlElement.textContent = 'Generated URL: ' + generatedUrl;
     
+
 
 	// Call the getData function, passing the generated URL
 	getData(generatedUrl);
