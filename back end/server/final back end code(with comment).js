@@ -47,7 +47,7 @@ app.get('/Table/Cafe', function (req, res) {
   //从URL处读取filter的值（比如URL为：http://casa0017.cetools.org:8816/Table/Cafe?wifi=0&seat=4）
   var wifi = req.query.wifi;     //if item of "wifi" has been included in URL, assign the value to var wifi (in this example, wifi = 0); 如果URL中含有“wifi”，则为var wifi 赋值（在这个例子中wifi = 0）
   var seat = req.query.seat;     //if item of "seat" has been included in URL, assign the value to var seat (in this example, seat = 4); 如果URL中含有“seat”，则为var seat 赋值（在这个例子中seat = 4）
-  var quiet = req.query.quiet;   //if item of "quiet" has been included in URL, assign the value to var quiet| if not, the subsequent code for "quiet" is not executed; 如果URL中含有“seat”，则为var seat 赋值,如果没有后续有关“quiet”的代码不予执行
+  var quiet = req.query.quiet;   //if item of "quiet" has been included in URL, assign the value to var quiet| if not, the subsequent code for "quiet" is not executed; 如果URL中含有“quiet”，则为var quiet 赋值,如果没有后续有关“quiet”的代码不予执行
   var cheap = req.query.cheap;   //same as above, in this example, no cheap
   var music = req.query.music;   //same as above, in this example, no music
   var socket = req.query.socket; //same as above, in this example, no socket
