@@ -60,22 +60,29 @@ html, body, #wrapper{
     margin-bottom: 50px;
 }
 
+/* filterSection */
 #filterSection {
     margin-left: 50px;
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
 }
 
 .filter-option {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    justify-content: space-between; 
+    margin-bottom: 12px;
+    width: 100%; 
 }
 
 .filter-icon {
-    margin-right: 5px;
+    margin-right: 8px;
 }
 
 .toggle-checkbox {
-    display: none; 
+    display: none;
+    margin-left: auto; 
 }
 
 .toggle-label {
@@ -83,9 +90,9 @@ html, body, #wrapper{
     display: inline-block;
     width: 40px;
     height: 24px;
-    background: #ccc;
+    background: #e0e0e0;
     border-radius: 50px;
-    margin: 0 10px;
+    margin-left: 10px;
     cursor: pointer;
     vertical-align: middle;
     transition: background-color 0.2s;
@@ -98,7 +105,7 @@ html, body, #wrapper{
     left: 2px;
     width: 20px;
     height: 20px;
-    background: #fff;
+    background: #ffffff;
     border-radius: 50%;
     transition: transform 0.2s;
 }
@@ -112,7 +119,9 @@ html, body, #wrapper{
 }
 
 #filterSection label {
-    margin-right: 5px;
+    margin-right: 8px;
+    font-weight: bold;
+    color: #333;
 }
 
 /* Button Styles */
