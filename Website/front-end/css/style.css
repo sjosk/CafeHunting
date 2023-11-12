@@ -55,9 +55,23 @@ html, body, #wrapper{
     height: 100%;
 }
 
+/* filter-icon */
+.filter-icon {
+    fill: #333; 
+    width: 25px; 
+    height: 25px;
+}
 
-#mode{
+/* mode */
+#mode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 50px;
+}
+
+#mode button {
+    margin: 5px 0; 
 }
 
 /* filterSection */
@@ -71,9 +85,19 @@ html, body, #wrapper{
 .filter-option {
     display: flex;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
     margin-bottom: 12px;
-    width: 100%; 
+    width: 100%;
+    position: relative;
+}
+
+.filter-option:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
 }
 
 .filter-icon {
@@ -123,6 +147,17 @@ html, body, #wrapper{
     font-weight: bold;
     color: #333;
 }
+
+/* Add separator line */
+#filterSection:before {
+    content: '';
+    display: block;
+    width: calc(100% + 50px); 
+    height: 1px;
+    background-color: #ccc;
+    margin: 10px -50px 10px -50px;
+}
+
 
 /* Button Styles */
 button {
