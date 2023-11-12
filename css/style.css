@@ -115,11 +115,31 @@ html, body, #wrapper{
     margin-right: 5px;
 }
 
+/* Button Styles */
 button {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
+    margin: 0 auto;
+    width: 150px;
+    padding: 5px;
+    background-color: #f8f8f8;
+    color: #000000;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button.active {
+    background-color: #27ae60;
+}
+
+/* Responsive Design for Buttons on Smaller Screens */
+@media (max-width: 768px) {
+    button {
+        width: 120px;
+    }
+}
 
 #generatedUrl {
     display: none;
