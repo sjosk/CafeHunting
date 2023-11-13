@@ -2,6 +2,8 @@
 <head>
 	<title>Cafe Hunting</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<!-- website favicon -->
+	<link rel="icon" href="./img/weblogo-05.png" type="image/png">
 	<link rel='stylesheet' id='font-css'  href='http://fonts.googleapis.com/css?family=Roboto:400,300,100' type='text/css' media='all' />
 	<link rel='stylesheet' href='./css/style.css' type='text/css'/>
 </head>
@@ -10,21 +12,23 @@
 	<div id='wrapper'>
 		<!-- left -->
         <div id='user-panel'>
-            <img id="Icon" src="./img/logo.png" alt="Cafe Hunting logo" width="280px" />
-       
+            
+			<img id="Icon" src="./img/logo.png" alt="Cafe Hunting logo" width="360px" /><br>
+			
 			<div id="mode">
-            <button id="locateButton">📍 FIND NEARBY</button>  <!-- link to locateUser.js -->
-            <button id="workButton">💼 WORK</button> 
-            <button id="clearFiltersButton">💡 CLEAR</button>
-	    	<button id="demoButton">📺 DEMO</button> <!-- link to demo.js -->
-
+            <button id="locateButton"><img src="img/marker.svg" alt="find nearby" width=59%><span>Nearby</span></button>  
+			<button id="workButton"><img src="img/briefcase.svg" alt="work mode" width=55%><span>Work</span></button> 
+            <button id="refleshButton"><img src="img/refresh.svg" alt="refresh" width=55%><span>Reflesh</span></button> 
+	    	<button id="demoButton"><img src="img/demo.svg" alt="refresh" width=60%><span> Demo</span></button> 
 			</div>
+			
             <!-- Filter -->
 			<div id="filterSection">
-				
+				<img id="slogan" src="./img/slogan-03.png" alt="Cafe Hunting slogan" width="350px" /><br>
+				<div id="dashline"></div>
 				<div class="filter-option">
 					<span class="filter-icon">
-						<img class="filter-icon" src="img/icons/wifi.svg">
+						<img class="filter-icon" src="img/icons/wifi.svg" alt="wifi option">
 					</span>
 					<label for="wifiToggle">Wi-Fi</label>
 					<input type="checkbox" id="wifiToggle" class="toggle-checkbox" >
@@ -33,7 +37,7 @@
 				
 				<div class="filter-option">
 					<span class="filter-icon">
-						<img class="filter-icon" src="img/icons/seat.svg">
+						<img class="filter-icon" src="img/icons/seat.svg" alt="seat option">
 					</span>
 					<label for="seatsToggle">Seats</label>
 					<input type="checkbox" id="seatsToggle" class="toggle-checkbox" >
@@ -42,7 +46,7 @@
 
 				<div class="filter-option">
 					<span class="filter-icon">
-						<img class="filter-icon" src="img/icons/quiet.svg">
+						<img class="filter-icon" src="img/icons/quiet.svg" alt="quiet option">
 					</span>
 					<label for="quietToggle">Quiet</label>
 					<input type="checkbox" id="quietToggle" class="toggle-checkbox" >
@@ -51,7 +55,7 @@
 				
                 <div class="filter-option">
 					<span class="filter-icon">
-						<img class="filter-icon" src="img/icons/socket.svg">
+						<img class="filter-icon" src="img/icons/socket.svg" alt="socket option">
 					</span>
 					<label for="socketToggle">Socket</label>
 					<input type="checkbox" id="socketToggle" class="toggle-checkbox" >
@@ -60,7 +64,7 @@
 
 				<div class="filter-option">
 					<span class="filter-icon">
-						<img class="filter-icon" src="img/icons/desk.svg">
+						<img class="filter-icon" src="img/icons/desk.svg" alt="standing desk option">
 					</span>
 					<label for="standingDeskToggle">Standing Desk</label>
 					<input type="checkbox" id="standingDeskToggle" class="toggle-checkbox" >
@@ -69,7 +73,7 @@
 
 				<div class="filter-option">
 					<span class="filter-icon">
-						<img class="filter-icon" src="img/icons/cheap.svg">
+						<img class="filter-icon" src="img/icons/cheap.svg" alt="cost option">
 					</span>
 					<label for="cheapToggle">Cheap</label>
 					<input type="checkbox" id="cheapToggle" class="toggle-checkbox" >
@@ -78,7 +82,7 @@
 
 				<div class="filter-option">
 					<span class="filter-icon">
-						<img class="filter-icon" src="img/icons/music.svg">
+						<img class="filter-icon" src="img/icons/music.svg" alt="music option">
 					</span>
 					<label for="musicToggle">Music</label>
 					<input type="checkbox" id="musicToggle" class="toggle-checkbox" >
@@ -87,18 +91,37 @@
 
 				<div class="filter-option">
 					<span class="filter-icon">
-						<img class="filter-icon" src="img/icons/limited-time.svg">
+						<img class="filter-icon" src="img/icons/limited-time.svg" alt="limited time option">
 					</span>
 					<label for="limitedTimeToggle">Limited Time</label>
 					<input type="checkbox" id="limitedTimeToggle" class="toggle-checkbox" >
 					<label class="toggle-label" for="limitedTimeToggle"></label>
 				</div>
 
+				<div id="clear">
+					<button id="clearFiltersButton"><span>Clear all options</span></button> 
+				</div>
+				<div id="dashline"></div>
+				<div class="color-guide">
+					<div class="color-item">
+						<span class="color-box green"></span>
+						<span class="color-description">Cheap, abundant, stable</span>
+					</div>
+					<div class="color-item">
+						<span class="color-box yellow"></span>
+						<span class="color-description">Mid-priced, possibly available, not guaranteed</span>
+					</div>
+					<div class="color-item">
+						<span class="color-box red"></span>
+						<span class="color-description">Expensive, scarce, unstable</span>
+					</div>
+				</div>
+				
 
 			</div>
 			
 			<div id="generatedUrl"></div>
-		
+			
 			
         </div>
 		<!-- Right -->
