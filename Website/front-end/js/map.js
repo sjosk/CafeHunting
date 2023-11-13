@@ -342,9 +342,7 @@ $('#workButton').click(function() {
 				   var urlContent = marker.customInfo.url.trim() !== '' ? `<a href="${marker.customInfo.url}" target="_blank">${marker.customInfo.url}</a>` : 'Information missing';
 
 				   var content = `
-					   <b>Name:</b> ${marker.customInfo.name}<br>
-					   <b>City:</b> ${marker.customInfo.city}<br>
-					   <b>Address:</b> ${marker.customInfo.address}<br>
+					   <b><h3>${marker.customInfo.name}</h3></b>
 					   <img src="img/icons/${wifiIcon}" width="25" height="25">
 					   <img src="img/icons/${seatIcon}" width="25" height="25">
 					   <img src="img/icons/${socketIcon}" width="25" height="25">
@@ -354,6 +352,8 @@ $('#workButton').click(function() {
 					   <img src="img/icons/${musicIcon}" width="25" height="25">  
 					   <img src="img/icons/${limitedTimeIcon}" width="25" height="25">
 					   <br>
+					   <b>City:</b> ${marker.customInfo.city}<br>
+					   <b>Address:</b> ${marker.customInfo.address}<br>
 					   <b>Open Time:</b> ${openTimeContent}<br>
 					   <b>URL:</b> ${urlContent}
 				   `; 
@@ -372,8 +372,11 @@ $('#workButton').click(function() {
 
 	// Start the map using a function
 	google.maps.event.addDomListener(window, 'load', initialize);
+	document.getElementById('refleshButton').addEventListener('click', initialize);
+
 	initialize();
 });
+
 
 
 
