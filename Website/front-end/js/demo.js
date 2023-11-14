@@ -21,7 +21,7 @@ function demo() {
     // Add markers to array
     markers.push(marker);
 
-    // Mark the 500m radius around the location
+    // Mark the 200m radius around the location
     var circle = new google.maps.Circle({
         strokeColor: '#FF0000',
         strokeOpacity: 0.3,
@@ -30,8 +30,7 @@ function demo() {
         fillOpacity: 0.05,
         map: map,
         center: MRT,
-        radius: 500, 
-        strokePattern: [5, 5] // the stroke style
+        radius: 200, 
     });
 
     // Add circles to array
