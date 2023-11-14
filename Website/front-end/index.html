@@ -6,6 +6,51 @@
 	<link rel="icon" href="./img/weblogo-05.png" type="image/png">
 	<link rel='stylesheet' id='font-css'  href='http://fonts.googleapis.com/css?family=Roboto:400,300,100' type='text/css' media='all' />
 	<link rel='stylesheet' href='./css/style.css' type='text/css'/>
+	<div id="popupOverlay">
+		<div id="popupWindow">
+			<img id="Icon" src="./img/logo.png" alt="Cafe Hunting logo" width="280px" /><br>
+			<div id="page1" class="page"><b>Cafe Hunting - Navigate To Your Ideal Cafe</b><br>
+				The architecture of a web platform, customised for coffee passionates and remote workers looking for the perfect café in Taipei City. <br>
+				We aim to cater to the specific needs of this target audience, going beyond the typical limitations experienced when using a laptop at a café on the weekend to provide a place for both work and leisure.<br>
+				
+				<br>
+				<button onclick="goToNextPage(2)">Next</button>
+			</div>
+			<div id="page2" class="page" style="display:none;">
+				<b>🗺 How to interact with map?</b><br>
+				The interface is split into two parts: the left side consists of a functional column, and the right side showcases a map.
+			<br><br>
+			[Funtional Features]<br>
+			<br><b>- Nearby</b>: Requires user consent to acquire their coordinates for marker placement and displaying nearby coffee shop information. (Note: If coordinates fall outside Taipei City, the map centers on the city and alerts users that they are outside the database's range.)
+			<br><b>- Work</b>: Assigns a special functional aspect to coffee shops, providing shortcuts for digital nomads or users utilizing cafes for work.
+			<br><b>- Refresh</b>: Allows users to swiftly clear map markers and selections.
+			<br><b>- Demo</b>: Offers an experience of the Cafe Hunting website features to users located outside Taipei City.
+			<br><b>- Hunting Your Way</b>: Offers two search modes: a graphical search centered around MRT stations and a data-based search by coffee shop name.
+			<br><b>- Filter Option</b>: Includes eight filtering choices and a shortcut to clear all selections, with real-time feedback provided on the right-side map.
+			<br><b>- Map dragging</b>: Offering users a reference for the distance to nearby coffee shops (Radius 200m).
+			<br><b>- Click Cafe Marker</b>: Offering users coffee shops information.
+			<br><br>
+			<button onclick="goToNextPage(3)">Next</button>
+			</div>
+			
+			<div id="page3" class="page" style="display:none;">
+				<b>☕️ Who are we?</b><br>
+				We are 2b|!2b, a group of students from University College London (UCL) Connected Environments, who are passionate about cafe.
+				<br>Our motivation behind this effort was to create a user-friendly portal that would pave the way for individuals to easily find cafes that match their diverse preferences, whether it be for productivity or socialising.<br>
+				<br>[Group Members] <br>
+				Front-end and Design: Esther, Gandi<br>
+				Back-end and Data: Xincen, Yuhang<br>
+				
+				<a href="https://github.com/sjosk/CafeHunting/" target="_blank">📂 Project Github</a><br>
+				<a href="https://cafenomad.tw/developers/docs/v1.2?source=post_page-----75cf8c06177c--------------------------------" target="_blank">📂 Database: Cafe Nomad API v1.2 </a>
+				<br>Project of UCL Connected Environments CASA0017<br>
+				<br><br>
+				<button onclick="closePopup()">Enjoy your Hunting!</button>
+			
+				
+			</div>
+		</div>
+	</div>
 </head>
 <body>
 	
@@ -18,18 +63,18 @@
 			<div id="mode">
             <button id="locateButton"><img src="img/marker.svg" alt="find nearby" width=59%><span>Nearby</span></button>  
 			<button id="workButton"><img src="img/briefcase.svg" alt="work mode" width=55%><span>Work</span></button> 
-            <button id="refleshButton"><img src="img/refresh.svg" alt="refresh" width=55%><span>Refresh</span></button> 
+            <button id="refleshButton"><img src="img/refresh.svg" alt="refresh" width=55%><span>Reflesh</span></button> 
 	    	<button id="demoButton"><img src="img/demo.svg" alt="refresh" width=60%><span> Demo</span></button> 
 			</div>
 			
-           		 <!-- Filter -->
+            <!-- Filter -->
 			<div id="filterSection">
-				<img id="slogan" src="./img/slogan-03.png" alt="Cafe Hunting slogan" width="350px" /></a><br>
+				<img id="slogan" src="./img/slogan-03.png" alt="Cafe Hunting slogan" width="350px" /><br>
 				<div id="dashline"></div>
 				<div id="searchstation">
 				<select id="stationSelect" onchange="setMapCenter()">
 					<option value="">🔍 &nbsp;&nbsp;&nbsp;&nbsp;Hunting your own way</option>
-					<option value="">Search from Metro Station=</option>
+					<option value="">=Search from Metro Station=</option>
 					<option value="25.0474,121.5171">-Taipei Main Station</option>
 					<option value="25.0416,121.5438">-Zhongxiao Fuxing Station</option>
 					<option value="25.0331,121.5645">-Taipei 101 Station</option>
@@ -65,7 +110,7 @@
 					<label class="toggle-label" for="quietToggle"></label>
 				</div>
 				
-               			 <div class="filter-option">
+                <div class="filter-option">
 					<span class="filter-icon">
 						<img class="filter-icon" src="img/icons/socket.svg" alt="socket option">
 					</span>
@@ -133,9 +178,9 @@
 			<div id="generatedUrl"></div>
 				
         </div>
-	<!-- Right -->
+		<!-- Right -->
         <div id='map-canvas'> 
-        	<!-- Map here -->
+        <!-- Map here -->
         </div>
     </div>
     <!-- The Javascript from external websites gets Loaded Here -->
@@ -149,6 +194,23 @@
     <script type='text/javascript' src='./js/demo.js'></script>
     <script type='text/javascript' src='./js/interaction.js'></script>
 	<script type='text/javascript' src='./js/mrt.js'></script>
+
+	<script>
+	function goToNextPage(pageNumber) {
+    var pages = document.getElementsByClassName('page');
+    for (var i = 0; i < pages.length; i++) {
+        pages[i].style.display = 'none'; 
+    }
+    document.getElementById('page' + pageNumber).style.display = 'block'; 
+}
+	function closePopup() {
+		document.getElementById('popupOverlay').style.display = 'none';
+	}
+	
+	window.onload = function() {
+		document.getElementById('popupOverlay').style.display = 'flex';
+	}
+	</script>
 
 </body>
 </html>
