@@ -22,9 +22,21 @@
 	    	<button id="demoButton"><img src="img/demo.svg" alt="refresh" width=60%><span> Demo</span></button> 
 			</div>
 			
-            <!-- Filter -->
+           		 <!-- Filter -->
 			<div id="filterSection">
-				<img id="slogan" src="./img/slogan-03.png" alt="Cafe Hunting slogan" width="350px" /><br>
+				<img id="slogan" src="./img/slogan-03.png" alt="Cafe Hunting slogan" width="350px" /></a><br>
+				<div id="dashline"></div>
+				<div id="searchstation">
+				<select id="stationSelect" onchange="setMapCenter()">
+					<option value="">🔍 &nbsp;&nbsp;&nbsp;&nbsp;Hunting your own way</option>
+					<option value="">Search from Metro Station=</option>
+					<option value="25.0474,121.5171">-Taipei Main Station</option>
+					<option value="25.0416,121.5438">-Zhongxiao Fuxing Station</option>
+					<option value="25.0331,121.5645">-Taipei 101 Station</option>
+					<option value="25.0634,121.5517">-TSA Airport</option>
+					<option value="datasearch.html">=Search from CAFE Name=</option></a>
+				</select>
+				</div>
 				<div id="dashline"></div>
 				<div class="filter-option">
 					<span class="filter-icon">
@@ -53,7 +65,7 @@
 					<label class="toggle-label" for="quietToggle"></label>
 				</div>
 				
-                <div class="filter-option">
+               			 <div class="filter-option">
 					<span class="filter-icon">
 						<img class="filter-icon" src="img/icons/socket.svg" alt="socket option">
 					</span>
@@ -109,24 +121,21 @@
 					</div>
 					<div class="color-item">
 						<span class="color-box yellow"></span>
-						<span class="color-description">Mid-priced, possibly available, not guaranteed</span>
+						<span class="color-description">Mid-priced, possibly available, Radius 500m</span>
 					</div>
 					<div class="color-item">
 						<span class="color-box red"></span>
-						<span class="color-description">Expensive, scarce, unstable</span>
+						<span class="color-description">Expensive, scarce, unstable, busy, Radius 200m</span>
 					</div>
 				</div>
-				
-
 			</div>
 			
 			<div id="generatedUrl"></div>
-			
-			
+				
         </div>
-		<!-- Right -->
+	<!-- Right -->
         <div id='map-canvas'> 
-        <!-- Map here -->
+        	<!-- Map here -->
         </div>
     </div>
     <!-- The Javascript from external websites gets Loaded Here -->
@@ -136,10 +145,10 @@
     <!-- &callback=initialize -->
     <script type='text/javascript' src='./js/map.js'></script>
     <script type="text/javascript" src="./js/locateUser.js"></script>
-    <script type='text/javascript' src='./js/xdate.js'></script>
     <script type='text/javascript' src='./js/mapStyle.js'></script>
     <script type='text/javascript' src='./js/demo.js'></script>
     <script type='text/javascript' src='./js/interaction.js'></script>
-    
+	<script type='text/javascript' src='./js/mrt.js'></script>
+
 </body>
 </html>
