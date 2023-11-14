@@ -12,6 +12,10 @@ var user = {
 	url: './img/user.png',
 	scaledSize: new google.maps.Size(50, 50),
 	}
+var mrt = {
+	url: './img/mrt-01-01.png',
+	scaledSize: new google.maps.Size(40, 40),
+	}
 
 $(document).ready(function() {
 
@@ -183,7 +187,6 @@ $('#workButton').click(function() {
 
 		};
 		
-		
 		// Write the map into div=id map-canvas
 		map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
@@ -193,8 +196,40 @@ $('#workButton').click(function() {
 			console.log("Center: " + map.getCenter().lat() + ", " +  map.getCenter().lng());
 			getData(map.getCenter().lat(),map.getCenter().lng());
 			//display the marker after dragging
+			
+				var newCenter = map.getCenter();
+			
+				
+				clearOverlays();
+			
+				// create new marker when user dragged
+				var newMarker = new google.maps.Marker({
+					position: newCenter,
+					map: map,
+					icon: user, 
+					title: 'New Location'
+				});
+			
+				// create new circle when user dragged
+				var newCircle = new google.maps.Circle({
+					strokeColor: '#FF0000',
+					strokeOpacity: 0.3,
+					strokeWeight: 2,
+					fillColor: '#FF0000',
+					fillOpacity: 0.05,
+					map: map,
+					center: newCenter,
+					radius: 200,
+				});
+			
+				// Add markers to array
+				markers.push(newMarker);
+				circles.push(newCircle);
+			
+			
 			displayGeneratedUrl();
 			setAllMap(map);
+			
 		
 		});
 		getData(map.getCenter().lat(),map.getCenter().lng());
@@ -215,7 +250,7 @@ $('#workButton').click(function() {
 
 
 	}
-		//  BackE: Edit this variable so that it points to our API Look at Cafe Database for the values you need
+		//  Points to our API Look at Cafe Database for the values
 		// var url = "http://casa0017.cetools.org:8816/Table/Cafe";
 	
 	function getData(url) {
@@ -254,7 +289,7 @@ $('#workButton').click(function() {
 
 			   
 
-			   // //Using Flickr API to get the photo as an example(waiting for our database)
+			   // Geting data from the database
 			   google.maps.event.addListener(marker, 'click', function () {
 				   infowindow.setContent(""); 
 		   
@@ -397,7 +432,3 @@ function setAllMap(map) {
 function clearMarkers() {
 	setAllMarkers(null);
 }
-
-String.prototype.replaceAll = function(str1, str2, ignore) {
-	return decodeURIComponent( this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2) );
-} 
