@@ -7,7 +7,8 @@ The objective of the website is to establish a platform that generates suitable 
 ## Front-end
 The website's design integrates HTML, CSS, and JavaScript in its front end. It adopts a user-centered design philosophy, aiming to facilitate users save time and money while searching for coffee shops that align with their requirements.   
 
-### HTML & CSS  
+### HTML & CSS   
+**Structure**  
 The interface is split into two parts: the left side consists of a functional column (User Input), and the right side showcases a map (Data Output). The site features two primary pages: the homepage (index.html), designed in an application-style format, and a data searching page (datasearch.html).   
   
 ![web](https://github.com/sjosk/CafeHunting/blob/main/Group%20Report/Img/index.png)
