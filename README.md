@@ -66,7 +66,7 @@ The 'backendresearch.js' file, serves as a backend script for a web application 
 It initialises an Express application and sets a variable portNumber:8816 to define the port on which the server listens. It then establishes a MySQL database connection using "mysql.createConnection" and provides the necessary credentials and database information. The script handles connection errors and confirms a successful database connection with a console message.
 
 
-First tessting, a key feature of this script is the API endpoint '/Table/Cafe', which is set up to handle GET requests. When this endpoint is accessed, the script executes a SQL query to select all records from the 'Cafe' table in the database where the 'wifi' and 'quiet' ratings are greater than 4. It logs the SQL statement for debugging purposes.
+First testing, a key feature of this script is the API endpoint '/Table/Cafe', which is set up to handle GET requests. When this endpoint is accessed, the script executes a SQL query to select all records from the 'Cafe' table in the database where the 'wifi' and 'quiet' ratings are greater than 4. It logs the SQL statement for debugging purposes.
 
 
 Second testing, the frontend can successfully transfer the command of changing the filter buttom to choose the ones comply with a standard to the backend, and the backend will give all the database following the command to the front end and show them on the map.
