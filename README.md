@@ -4,7 +4,30 @@
 The objective of the website is to establish a platform that generates suitable cafa data outcomes using a filter. Initially, we focus on integrating the front-end with the back-end. The front-end will relay user-selected commands from the filter to the back-end. In response, the back-end will interact with a specifically required database and transmit the results back to the front-end.
 
 ## Front-end
+The website's design integrates HTML, CSS, and JavaScript in its front end. It adopts a user-centered design philosophy, aiming to facilitate users save time and money while searching for coffee shops that align with their requirements.  
+### HTML & CSS  
+The interface is split into two parts: the left side consists of a functional column (User Input), and the right side showcases a map (Data Output). The site features two primary pages: the homepage (index.html), designed in an application-style format, and a data searching page (datasearch.html).   
 
+**User Interface Design**  
+To accentuate the map on the right side, more subdued colors are used in the left functional column. Common modes and shortcuts are incorporated to save users time and enhance the user experience.  
+Beyond time efficiency, the website's development involved continuous testing and refinement. Features like map dragging and updating the coordinate range are included, offering users a reference for the distance to nearby coffee shops (Radius 200m).  
+Many icons are employed throughout the site, predominantly in SVG format, which aids in altering states through coding. An icon color guide is also provided at the lower left side.  
+
+### JavaScript Features
+- `Nearby`  
+  Utilizes the **W3C Geolocation API**, which requires user consent to acquire their coordinates for marker placement and displaying nearby coffee shop information.
+  *(Note: If coordinates fall outside Taipei City, the map centers on the city and alerts users that they are outside the database's range.)*  
+- `Work`  
+  Assigns a special functional aspect to coffee shops, providing shortcuts for digital nomads or users utilizing cafes for work. This button is connected with the Filter options below.  
+- `Refresh`  
+  Allows users to swiftly clear map markers and selections.  
+- `Demo`  
+  Offers an experience of the Cafe Hunting website features to users located outside Taipei City.  
+- `Hunting Your Way`  
+  Offers two search modes: a graphical search centered around MRT stations and a data-based search by coffee shop name.  
+- `Filter Option`  
+  Includes eight filtering choices (Wi-Fi, Seats, Quiet, Socket, Standing Desk, Cheap, Music, Limited Time) and a shortcut to clear all selections, with real-time feedback provided on the right-side map.
+  
 
 ## Back-end
 The Taipei Cafe API is accessible at [https://cafenomad.tw/api/v1.2/cafes/taipei/]. This API generates a file known as [Cafe.sql](/CafeHunting/back end/database/Cafe.sql/), which is then converted into a .json format. This conversion results in the creation of a database named [cafedata.json](/CafeHuntingback end/database/cafedata.json/).
