@@ -15,15 +15,22 @@ html, body, #wrapper{
     width: 100%;
 }
 
+#wrapper {
+    display: flex;
+    height: 100%;
+}
+
+
+#user-panel{
+    height: 100%;  
+    width: 380px;
+}
+
 #map-canvas{
     height: 100%;
     flex: 1;
 }
 
-#wrapper {
-    display: flex;
-    height: 100%;
-}
 
 /* filter-icon */
 .filter-icon {
@@ -65,7 +72,6 @@ html, body, #wrapper{
     align-items: flex-start; 
     border-radius: 10px; 
     border: 3px solid rgb(184, 171, 171);
-    /* background-color: rgb(184, 171, 171);  */
 }
 #slogan{
     margin-top: -11px;
@@ -114,9 +120,9 @@ html, body, #wrapper{
     height: 24px;
     background: #e0e0e0;
     border-radius: 50px;
-    margin-left: 10px;
+    margin-left: 40px;
     cursor: pointer;
-    vertical-align: middle;
+    vertical-align: right;
     transition: background-color 0.2s;
 }
 
@@ -143,7 +149,7 @@ html, body, #wrapper{
 #filterSection label {
     margin-left: 15px;
     margin-right: 20px;
-    /* font-weight: bold; */
+    vertical-align: left;
     color: #6d6464;
     
 }
@@ -154,7 +160,6 @@ html, body, #wrapper{
     display: block;
     width: calc(100% + 50px); 
     height: 1px;
-    /* background-color: #ccc; */
     margin: 10px -50px 10px -50px;
 }
 
@@ -233,4 +238,20 @@ button.active {
     margin-right:30px;
     align-items: center;
     
+}
+
+#searchstation{
+    margin-left:50px;
+    margin-right:30px;
+    align-items: center;
+}
+
+#stationSelect {
+    /* background-color: #f0f0f0;  */
+    color: #6d6464;              
+    padding: 8px;             
+    border: 0px;    
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;               
+   
 }
